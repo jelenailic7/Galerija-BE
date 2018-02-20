@@ -5,19 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Gallerie;
 use App\Requests\GallerieRequest;
+use App\User;
+
 
 class GalleriesController extends Controller
 {
     
     public function index()
     {
+
         // $term = request()->input('term');
   
         // if($term) {
           
         //     return Gallerie::search($term);
         // } else {
-            return Gallerie::all();
+
+            return Gallerie::with('user')->get();
         // }
     }
    
@@ -50,4 +54,9 @@ class GalleriesController extends Controller
         $gallerie = Gallerie::find($id);
         $gallerie->delete();
     }
+    public function getGalleriesUser(Gallerie $gallerie)
+    {
+    	return $user = $gallerie->user();
+    }
+
 }

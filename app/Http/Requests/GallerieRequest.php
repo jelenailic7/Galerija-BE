@@ -26,6 +26,7 @@ class GallerieRequest extends FormRequest
            return [
             'name' => 'required',
             'image_url' => 'required|url',
+
                  
         ];
     }
