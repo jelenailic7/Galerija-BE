@@ -66,9 +66,7 @@ class RegisterController extends Controller
      */
     protected function create(Request $request)
     {
-        $credentials = $request->only('email','password');
-        $token = \JWTAuth::attempt($credentials);
-
+    
         $this->validator($request->all())->validate();
     
         return  User::create([

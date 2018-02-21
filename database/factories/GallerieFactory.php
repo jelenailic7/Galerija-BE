@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Gallerie::class, function (Faker $faker) {
+$factory->define(App\Gallery::class, function (Faker $faker) {
 		$values = array();
 			for ($i=0; $i < 100; $i++) {
 				$values []= $faker->unique()->imageUrl($width = 200, $height =200);
