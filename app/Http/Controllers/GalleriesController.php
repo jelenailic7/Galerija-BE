@@ -61,9 +61,6 @@ class GalleriesController extends Controller
         $gallery = Gallery::find($id);
         $gallery->delete();
     }
-    public function getGalleriesFromUser(Gallery $gallerie)
-    {
-    	return $user = $gallery->user()->get();
-    }
+    
 
 }
