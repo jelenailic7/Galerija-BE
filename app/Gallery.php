@@ -9,7 +9,7 @@ class Gallery extends Model
 	protected $table = 'galleries';
 
      protected $fillable = [
-        'name','description', 'image_url', 'user_id',
+        'name','description', 'image_url',
     ];
 
     public function user()

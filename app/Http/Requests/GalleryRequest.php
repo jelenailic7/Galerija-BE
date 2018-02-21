@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Requests;
 
+namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
+
 
 class GalleryRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class GalleryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +26,7 @@ class GalleryRequest extends FormRequest
     {
            return [
             'name' => 'required',
+            'description'=>'max:1000',
             'image_url' => 'required|url',
 
                  

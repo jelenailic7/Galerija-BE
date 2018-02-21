@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\Gallery;
-use App\Requests\GalleryRequest;
 use App\User;
+use Illuminate\Http\Request;
+use App\Http\Requests\GalleryRequest;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class GalleriesController extends Controller
@@ -29,7 +30,12 @@ class GalleriesController extends Controller
    
     public function store(GalleryRequest $request)
     {
-        return Gallery::create($request->all());
+    	$gallery = new Gallery();
+    	$gallery->name = $request['name'];
+    	$gallery->description= $request['description'];
+    	$gallery->image_url = $request['image_url'];
+    	$gallery->user_id = Auth::user()->id;	
+    	$gallery->save();
     }
   
     public function show($id)
@@ -55,9 +61,9 @@ class GalleriesController extends Controller
         $gallery = Gallery::find($id);
         $gallery->delete();
     }
-    public function getGalleriesUser(Gallery $gallerie)
+    public function getGalleriesFromUser(Gallery $gallerie)
     {
-    	return $user = $gallery->user();
+    	return $user = $gallery->user()->get();
     }
 
 }
