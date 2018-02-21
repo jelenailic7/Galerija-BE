@@ -12,12 +12,21 @@ class UsersController extends Controller
 {
     public function show($id)
     {
-        $user = User::find($id)->with('galleries');
+        return $user = User::find($id)->get();
       
     }
+
     public function getUserGalleries(User $user)   
     {   
     	 $user = Auth::user();	
     	 return $galleries = $user->galleries()->get();
+    }
+
+      public function getAuthorGalleries($id)   
+    {   
+    	// return User::find($id)->join('galleries', 'users.id', '=', 'galleries.user_id')->get();
+
+    	return $galleries = User::find($id)->galleries()->get();
+
     }
 }

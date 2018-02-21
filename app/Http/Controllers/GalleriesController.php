@@ -22,8 +22,8 @@ class GalleriesController extends Controller
              return Gallery::search($term);
 
          } else {
-
-            return Gallery::with('user')->get();
+         	return Gallery::with(['user'])->get();
+            // return Gallery::join('users', 'users.id', '=', 'galleries.user_id')->get();
          }
     }
    
@@ -61,6 +61,7 @@ class GalleriesController extends Controller
         $gallery = Gallery::find($id);
         $gallery->delete();
     }
-    
+
+   
 
 }
