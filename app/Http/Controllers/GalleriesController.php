@@ -23,7 +23,6 @@ class GalleriesController extends Controller
 
          } else {
          	return Gallery::with(['user'])->get();
-            // return Gallery::join('users', 'users.id', '=', 'galleries.user_id')->get();
          }
     }
    
@@ -40,7 +39,7 @@ class GalleriesController extends Controller
   
     public function show($id)
     {
-        return Gallery::find($id);
+        return Gallery::with(['user'])->find($id);
     }
    
     public function edit($id)

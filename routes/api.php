@@ -19,8 +19,8 @@ Route::post('/register', 'Auth\RegisterController@create');
 Route::get('galleries', 'GalleriesController@index');
 Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
 Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries');
-// Route::middleware('jwt')->get('author/{id}', 'UsersController@show');
-// Route::middleware('jwt')->get('author/{id}', 'GalleriesController@getGalleryUser');
 Route::middleware('jwt')->get('author/{id}', 'UsersController@getAuthorGalleries');
+Route::middleware('jwt')->get('galleries/{id}', 'GalleriesController@show');
+
 
 
