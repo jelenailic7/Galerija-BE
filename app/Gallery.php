@@ -31,5 +31,9 @@ class Gallery extends Model
      	 		 ->get();
      	  
     }
+    public function comments()
+    {
+    	return $this->hasMany('App\Comment');
+    }
 }
 
