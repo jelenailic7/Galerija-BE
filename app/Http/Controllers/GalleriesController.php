@@ -22,7 +22,8 @@ class GalleriesController extends Controller
              return Gallery::search($term);
 
          } else {
-         	return Gallery::with(['user'])->get();
+
+         	return Gallery::with(['user'])->orderBy('created_at', 'desc')->get();
          }
     }
    
@@ -39,7 +40,7 @@ class GalleriesController extends Controller
   
     public function show($id)
     {
-        return Gallery::with('user')->find($id);
+        return Gallery::with(['user','comments'])->find($id);
     }
    
     public function edit($id)

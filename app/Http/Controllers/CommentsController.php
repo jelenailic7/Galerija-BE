@@ -10,17 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CommentsController extends Controller
 {
-    
-     public function index()
-    {
-        return  Comment::with('user','gallery')->get();
-      
-    }
-    public function show($id)
-    {
-        return $comment = Comment::find($id)->get();
-      
-    }
+
 
     public function store(Request $request,$id)
     {
