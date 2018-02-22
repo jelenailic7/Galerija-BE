@@ -21,6 +21,8 @@ Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
 Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries');
 Route::get('author/{id}', 'UsersController@getAuthorGalleries');
 Route::get('galleries/{id}', 'GalleriesController@show');
+Route::middleware('jwt')->post('galleries/{id}', 'CommentsController@store');
+
 
 
 

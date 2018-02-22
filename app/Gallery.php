@@ -28,12 +28,15 @@ class Gallery extends Model
      	   ->orWhereHas('user', function ($query) use ($term) {
      	  	 	return $query->where('first_name', 'LIKE', '%' . $term . '%');
      	 		  })
+           ->orWhereHas('user', function ($query) use ($term) {
+                return $query->where('last_name', 'LIKE', '%' . $term . '%');
+                  })
      	 		 ->get();
      	  
     }
     public function comments()
     {
-    	return $this->hasMany('App\Comment','gallery_id');
+    	return $this->hasMany('App\Comment');
     }
 }
 

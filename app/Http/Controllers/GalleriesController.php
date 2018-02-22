@@ -33,14 +33,23 @@ class GalleriesController extends Controller
     	$gallery = new Gallery();
     	$gallery->name = $request['name'];
     	$gallery->description= $request['description'];
-    	$gallery->image_url = $request['image_url'];
+    	$gallery->image_url = [ $request['image_url'] ];
     	$gallery->user_id = Auth::user()->id;	
     	$gallery->save();
     }
   
     public function show($id)
     {
-        return Gallery::with(['user','comments'])->find($id);
+        $gallery = Gallery::with(['user'])->where('id', $id);
+        // $gallery->with(['comments'], function($q) {
+        //     $q->join('comments', 'comments.user_id', '=', 'users.id');
+        // });
+
+        return $gallery->with(['comments'=> function( $q ) {
+            $q->with('user');
+            } ]
+        )->first();
+
     }
    
     public function edit($id)

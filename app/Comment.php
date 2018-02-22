@@ -14,6 +14,6 @@ class Comment extends Model
     }
     public function gallery()
     {
-        return $this->belongsTo(Team::class);
+        return $this->belongsTo(Gallery::class);
     }
 }
