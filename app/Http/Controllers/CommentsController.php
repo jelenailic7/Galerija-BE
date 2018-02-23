@@ -27,9 +27,9 @@ class CommentsController extends Controller
         $comment->gallery_id = $id;
         $comment->user_id = Auth()->user()->id;
         $comment->save();
+     
 
-        return back ();
-
+        return Comment::with('user')->where('id', $comment['id'])->first();
     }
     public function destroy($id)
     {
@@ -37,9 +37,5 @@ class CommentsController extends Controller
         $comment->delete();
     }
 
-    public function getUserFromComment()
-    {
-        return $user = Comment::find($id)->user()->get();
-    }
   
 }

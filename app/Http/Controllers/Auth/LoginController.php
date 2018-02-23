@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\User;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -49,7 +50,16 @@ class LoginController extends Controller
         } catch(JWTException $e){
             return response()->json(['error'=>'failed_to_create_token'],500);
         }
-        return response()->json(compact('token')); //'token' => $token,
+
+        $user = User::where('email', $request['email'])->get()->first();
+        $user = array(
+            'id' => $user->id,
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name
+        );
+        return response()->json(compact('token','user'));
+
+
            
     }
 

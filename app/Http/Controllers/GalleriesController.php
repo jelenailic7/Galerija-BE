@@ -40,15 +40,16 @@ class GalleriesController extends Controller
   
     public function show($id)
     {
-        $gallery = Gallery::with(['user'])->where('id', $id);
+       // return $gallery = Gallery::with(['user'])->where('id', $id);
         // $gallery->with(['comments'], function($q) {
         //     $q->join('comments', 'comments.user_id', '=', 'users.id');
         // });
 
-        return $gallery->with(['comments'=> function( $q ) {
-            $q->with('user');
-            } ]
-        )->first();
+        // return $gallery->with(['comments'=> function( $q ) {
+        //     $q->with('user');
+        //     } ]
+        // )->first();
+        return Gallery::with('user')->find($id);
 
     }
    
@@ -70,7 +71,10 @@ class GalleriesController extends Controller
         $gallery = Gallery::find($id);
         $gallery->delete();
     }
+    public function getGalleryComments($id)
+    {
 
-   
+        return $comments = Gallery::find($id)->comments()->with(['user'])->get();
+    }
 
 }

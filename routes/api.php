@@ -17,11 +17,20 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::post('/register', 'Auth\RegisterController@create');
 
 Route::get('galleries', 'GalleriesController@index');
-Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
-Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries');
 Route::get('author/{id}', 'UsersController@getAuthorGalleries');
 Route::get('galleries/{id}', 'GalleriesController@show');
-Route::middleware('jwt')->post('galleries/{id}', 'CommentsController@store');
+Route::get('galleries/{id}/comments', 'GalleriesController@getGalleryComments');
+
+
+Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
+Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries');
+
+Route::middleware('jwt')->post('galleries/{id}/comments', 'CommentsController@store');
+
+Route::middleware('jwt')->delete('galleries/{id}', 'GalleriesController@destroy');
+Route::middleware('jwt')->put('galleries/{id}', 'GalleriesController@update');
+
+
 
 
 
