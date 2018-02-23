@@ -28,7 +28,7 @@ Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries'
 Route::middleware('jwt')->post('galleries/{id}/comments', 'CommentsController@store');
 
 Route::middleware('jwt')->delete('galleries/{id}', 'GalleriesController@destroy');
-Route::middleware('jwt')->put('galleries/{id}', 'GalleriesController@update');
+Route::middleware('jwt')->put('edit-gallery/{id}', 'GalleriesController@update');
 
 
 

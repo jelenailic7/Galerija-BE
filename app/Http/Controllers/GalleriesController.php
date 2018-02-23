@@ -36,6 +36,8 @@ class GalleriesController extends Controller
     	$gallery->image_url = [ $request['image_url'] ];
     	$gallery->user_id = Auth::user()->id;	
     	$gallery->save();
+
+        return $gallery;
     }
   
     public function show($id)
@@ -60,8 +62,14 @@ class GalleriesController extends Controller
 
     public function update(GalleryRequest $request, $id)
     {
+
         $gallery = Gallery::findOrFail($id);
-        $gallery->update($request->all());
+        $gallery->name = $request['name'];
+        $gallery->description= $request['description'];
+        $gallery->image_url =  [$request['image_url']];
+        $gallery->user_id = Auth::user()->id;   
+        $gallery->save();
+
         return $gallery;
     }
    
