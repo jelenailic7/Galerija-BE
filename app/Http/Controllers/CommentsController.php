@@ -35,6 +35,7 @@ class CommentsController extends Controller
     {
         $comment = Comment::find($id);
         $comment->delete();
+        return $comment;
     }
 
   

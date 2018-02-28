@@ -43,15 +43,15 @@ class GalleriesController extends Controller
     public function show($id)
     {
        // return $gallery = Gallery::with(['user'])->where('id', $id);
-        // $gallery->with(['comments'], function($q) {
-        //     $q->join('comments', 'comments.user_id', '=', 'users.id');
-        // });
+       //  $gallery->with(['comments'], function($q) {
+       //      $q->join('comments', 'comments.user_id', '=', 'users.id');
+       //  });
 
-        // return $gallery->with(['comments'=> function( $q ) {
-        //     $q->with('user');
-        //     } ]
-        // )->first();
-        return Gallery::with('user')->find($id);
+       //  return $gallery->with(['comments'=> function( $q ) {
+       //      $q->with('user');
+       //      } ]
+       //  )->first();
+       return Gallery::with('user')->find($id);
 
     }
    

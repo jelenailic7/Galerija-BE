@@ -19,14 +19,14 @@ Route::post('/register', 'Auth\RegisterController@create');
 Route::get('galleries', 'GalleriesController@index');
 Route::get('author/{id}', 'UsersController@getAuthorGalleries');
 Route::get('galleries/{id}', 'GalleriesController@show');
-Route::get('galleries/{id}/comments', 'GalleriesController@getGalleryComments');
+Route::get('comments/{id}', 'GalleriesController@getGalleryComments');
 
 
 Route::middleware('jwt')->post('galleries', 'GalleriesController@store');
 Route::middleware('jwt')->get('my-galleries', 'UsersController@getUserGalleries');
 
-Route::middleware('jwt')->post('galleries/{id}/comments', 'CommentsController@store');
-Route::middleware('jwt')->delete('/comments/{id}', 'CommentsController@destroy');
+Route::middleware('jwt')->post('comments/{id}', 'CommentsController@store');
+Route::middleware('jwt')->delete('comments/{id}', 'CommentsController@destroy');
 
 
 Route::middleware('jwt')->delete('galleries/{id}', 'GalleriesController@destroy');
